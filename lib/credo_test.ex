@@ -15,5 +15,9 @@ defmodule CredoTest do
   def hello do
     require Logger
     Logger.info("Test message #{inspect("arg")} trolo")
+    Logger.info("Test message #{inspect("arg")} trolo", trol: "olo")
+    Logger.warn("Test message #{inspect("arg")} trolo")
+    Logger.error("Test message #{inspect("arg")} trolo")
+    Logger.log(100, "Test message #{inspect("arg")} trolo")
   end
 end
