@@ -1,14 +1,13 @@
 defmodule CredoTestTest do
   use Credo.Test.Case
-  doctest CredoTest
 
   test "greets the world" do
-    """
+    ~S"""
     defmodule TestModule do
       require Logger
 
       def some_fun() do
-        Logger.info(#{inspect(%{key: "value"})})
+        Logger.info("#{inspect(%{a: 2})}")
       end
     end
     """
