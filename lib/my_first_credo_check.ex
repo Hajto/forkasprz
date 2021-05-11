@@ -1,21 +1,7 @@
 defmodule MyFirstCredoCheck do
   @moduledoc """
-    Checks all lines for a given Regex.
-
-    This is fun!
+  Checks files for `inspect/2` calls inside Logger calls.
   """
-
-  @explanation [
-    check: @moduledoc,
-    params: [
-      regex: "All lines matching this Regex will yield an issue."
-    ]
-  ]
-  @default_params [
-    # our check will find this line.
-    regex: ~r/Creeeedo/
-  ]
-
   use Credo.Check, base_priority: :high, category: :custom
 
   @doc false
@@ -25,7 +11,7 @@ defmodule MyFirstCredoCheck do
     issue_meta = IssueMeta.for(source_file, params)
 
     do_walk = fn
-      {{:., _call_context, [{:__aliases__, _, [:Logger]}, :info]}, _, args} = node, acc ->
+      {{:., _call_context, [{:__aliases__, _, [:Logger]}, _]}, _, args} = node, acc ->
         issues = add_issues_if_present(args, issue_meta)
         {node, acc ++ issues}
 
